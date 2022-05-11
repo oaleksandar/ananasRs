@@ -14,8 +14,9 @@ public class BaseTest {
     @BeforeMethod
     public void setup(){
          System.setProperty("webdriver.chrome.driver",PropertyManager.getInstance().getDriverPath());
+
          driver = new ChromeDriver(new ChromeOptions().addArguments("--disable-notifications").addArguments("--start-maximized"));
-//         driver.manage().window().maximize();
+//         driver.manage().window().maximize(); -older and slower version
         driver.get(PropertyManager.getInstance().getUrl());
     }
 

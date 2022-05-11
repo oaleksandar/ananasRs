@@ -11,7 +11,8 @@ public class LoginPage extends BasePage {
     By signinButtonBy = By.className("login");
     By emailFeildBy = By.id("email");
     By passwordFeildBy = By.id("passwd");
-    By submitLoginBy = By.id("Submitlogin");
+    By submitLoginBy = By.id("SubmitLogin");
+
 
     public void login(String email, String password){
          click(signinButtonBy);
@@ -20,14 +21,5 @@ public class LoginPage extends BasePage {
          click(submitLoginBy);
 
     }
-    public void writeText(By elementBy, String text){
-       waitVisibility(elementBy);
-       driver.findElement(elementBy).clear();
-       driver.findElement(elementBy).sendKeys(text);
 
-    }
-    public String readText(By elementBy){
-        waitVisibility(elementBy);
-      return driver.findElement(elementBy).getText();
-    }
 }

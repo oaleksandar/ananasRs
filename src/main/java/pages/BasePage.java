@@ -14,7 +14,7 @@ public class BasePage {
 
     public BasePage(WebDriver driver){
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20,1));
+        wait = new WebDriverWait(driver,20);
     }
     public void waitVisibility(By elementBy){
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(elementBy));
@@ -25,5 +25,15 @@ public class BasePage {
     }
     public void assertStringEquals(String actualText, String expectedText){
         Assert.assertEquals(actualText,expectedText);
+    }
+    public void writeText(By elementBy, String text){
+        waitVisibility(elementBy);
+        driver.findElement(elementBy).clear();
+        driver.findElement(elementBy).sendKeys(text);
+
+    }
+    public String readText(By elementBy){
+        waitVisibility(elementBy);
+        return driver.findElement(elementBy).getText();
     }
 }
