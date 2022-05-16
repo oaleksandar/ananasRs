@@ -12,6 +12,9 @@ public class LoginPage extends BasePage {
     By emailFeildBy = By.id("email");
     By passwordFeildBy = By.id("passwd");
     By submitLoginBy = By.id("SubmitLogin");
+    By regEmailFeildBy = By.id("email_create");
+    By createAccountButtonBy = By.id("SubmitCreate");
+
 
 
     public void login(String email, String password){
@@ -20,6 +23,12 @@ public class LoginPage extends BasePage {
          writeText(passwordFeildBy,password);
          click(submitLoginBy);
 
+    }
+
+    public void navigateRegistration (String regEmail){
+        click(signinButtonBy);
+        writeText(regEmailFeildBy,regEmail);
+        click(createAccountButtonBy);
     }
 
 }
