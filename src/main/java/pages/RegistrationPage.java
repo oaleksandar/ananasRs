@@ -28,8 +28,7 @@ public class RegistrationPage extends BasePage{
         writeText(passwordInputFeild,password);
         writeText(adressInputFeild,address);
         writeText(cityInputFiled,city);
-        Select dropdown = new Select(driver.findElement(stateDropDown));
-        dropdown.selectByValue("1");
+        selectRandomDropDown(stateDropDown);
         writeText(postCodeInputField,postCode);
         writeText(mobileInputField,mobPhone);
         click(registerButtonBy);
