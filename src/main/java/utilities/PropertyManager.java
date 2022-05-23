@@ -103,7 +103,7 @@ public class PropertyManager {
         return address;
     }
 
-    public static String getCity() {
+    public String getCity() {
         return city;
     }
 

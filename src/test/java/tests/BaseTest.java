@@ -2,10 +2,13 @@ package tests;
 
 import javafx.beans.property.Property;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import pages.LoginPage;
 import utilities.PropertyManager;
 
 public class BaseTest {
@@ -13,15 +16,17 @@ public class BaseTest {
 
     @BeforeMethod
     public void setup(){
-         System.setProperty("webdriver.chrome.driver",PropertyManager.getInstance().getDriverPath());
+        System.setProperty("webdriver.chrome.driver", PropertyManager.getInstance().getDriverPath());
 
-         driver = new ChromeDriver(new ChromeOptions().addArguments("--disable-notifications").addArguments("--start-maximized"));
+        driver = new ChromeDriver(new ChromeOptions().addArguments("--disable-notifications").addArguments("--start-maximized"));
 //         driver.manage().window().maximize(); -older and slower version
         driver.get(PropertyManager.getInstance().getUrl());
+
     }
 
     @AfterMethod
     public void tearDown(){
         driver.quit();
-    }
 }
+}
+
