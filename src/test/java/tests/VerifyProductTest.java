@@ -9,8 +9,6 @@ import utilities.PropertyManager;
 public class VerifyProductTest extends BaseTest{
 
     @Test
-    @Description("Check the first 3 pages of search results and verify that all products have keyword, " +
-                 "title, price and image, and logs prices for all products in the console")
 
     public void verifyProductTest() {
 
