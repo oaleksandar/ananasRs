@@ -1,0 +1,6 @@
+pages\BasePage.class
+pages\VerificationPage.class
+pages\LoginPage.class
+pages\UserLoggedInPage.class
+pages\RegistrationPage.class
+utilities\PropertyManager.class
