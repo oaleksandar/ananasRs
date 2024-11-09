@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.time.Duration;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -30,21 +31,30 @@ public class BasePage {
     }
 
     public void handlePopUpIfExists(By elementBy) {
-        try {
+        // Pop-Up Add should only appear between 14:00 and 22:00
+        LocalTime startTime = LocalTime.of(13, 0); // 13:00 hours
+        LocalTime endTime = LocalTime.of(22, 0);   // 22:00 hours
+        LocalTime currentTime = LocalTime.now();   // Get the current local time
 
-            // Wait for the pop-up (e.g., an element like a close button) to be visible
-            WebElement popUpCloseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(elementBy));
-            // Check if the close button exists, and click to close it
-            if (popUpCloseButton.isDisplayed()) {
-                popUpCloseButton.click();
-                System.out.println("Pop-up closed successfully.");
+        // Check if the current time is within active hours
+        if (currentTime.isAfter(startTime) && currentTime.isBefore(endTime)) {
+            try {
+                WebElement popUpCloseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(elementBy));
+
+                if (popUpCloseButton.isDisplayed()) {
+                    popUpCloseButton.click();
+                    System.out.println("Pop-up closed successfully.");
+                }
+            } catch (TimeoutException e) {
+                // No pop-up appeared within the given time frame
+                System.out.println("No pop-up appeared.");
+            } catch (NoSuchElementException e) {
+                // Handle if the element is not found or any other issues
+                System.out.println("Pop-up close button not found.");
             }
-        } catch (TimeoutException e) {
-            // No pop-up appeared within the given time frame
-            System.out.println("No pop-up appeared.");
-        } catch (NoSuchElementException e) {
-            // Handle if the element is not found or any other issues
-            System.out.println("Pop-up close button not found.");
+        } else {
+            // Print message if outside active hours
+            System.out.println("Current time is outside of active hours (13:00 to 22:00). Pop-up handling skipped.");
         }
     }
 
