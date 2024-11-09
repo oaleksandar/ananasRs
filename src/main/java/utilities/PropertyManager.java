@@ -8,7 +8,6 @@ import java.util.Properties;
 public class PropertyManager {
     private static String url;
     private static String kljucnaRec;
-    private static String highlightClass;
     private static String driverPath;
     private static String configPath = "src/main/resources/configuration.properties";
     private static PropertyManager instance;
@@ -33,7 +32,6 @@ public class PropertyManager {
         }
         url = prop.getProperty("url");
         kljucnaRec = prop.getProperty("kljucnaRec");
-        highlightClass = prop.getProperty("highlightClass");
         driverPath = prop.getProperty("driverPath");
     }
 
@@ -55,8 +53,6 @@ public class PropertyManager {
     }
     public String getKljucnaRec(){
         return kljucnaRec;}
-    public String getHighlightClass(){
-        return highlightClass;}
     public String getDriverPath(){
         return driverPath;
     }

@@ -17,18 +17,14 @@ public class VerifyProductPage extends BasePage {
     By searchButton = By.xpath("//button[@aria-label='Search']");
     By slazemSe = By.xpath("/html//div[@id='__next']//button[.='Slažem se']");
     By popupClose = By.xpath("//button[@aria-label='zatvori popup']");
-
-    By frame = By.xpath("//iframe[@data-tagging-id='AW-302479078']");
     By pagination = By.xpath("/html//div[@id='__next']/div[4]//ul[@class='ais-Pagination-list']/li[1]");
     By nextPage = By.xpath("//li[@class='ais-Pagination-item ais-Pagination-item--nextPage']");
-    By pageTwo = By.cssSelector("#__next > div.sc-1f6z3vw-0.fGRnJD > div.sc-1k1vhoz-0.bfSSeI > div > div.sc-1iekrn-3.kIOPbR > div.sc-hj4qyi-1.bnJnVi.ais-Pagination > ul > a:nth-child(5) > li");
-    By pageThree = By.cssSelector("a:nth-of-type(3) > .eFbRyn.sc-hj4qyi-0");
 
 
 
     public void searchPage(String kljucnaRec){
         click(slazemSe);
-        handlePopUpIfExists(popupClose); //mostly appears from 14:00 to 22:00
+        handlePopUpIfExists(popupClose); //mostly appears from 14:00h to 22:00h
         waitVisibility(pageLogo);
         click(searchBar);
         writeText(searchBar,kljucnaRec);
@@ -39,11 +35,11 @@ public class VerifyProductPage extends BasePage {
         List<String> accumulatedBugReport = new ArrayList<>(); // List for bug accumulation across all 3 pages
 
         // Run verification for each page
-        accumulatedBugReport.addAll(verifyProductsOnPage(kljucnaRec)); // Prva strana
+        accumulatedBugReport.addAll(verifyProductsOnPage(kljucnaRec)); // First page
         click(nextPage);
-        accumulatedBugReport.addAll(verifyProductsOnPage(kljucnaRec)); // Druga strana
+        accumulatedBugReport.addAll(verifyProductsOnPage(kljucnaRec)); // Second page
         click(nextPage);
-        accumulatedBugReport.addAll(verifyProductsOnPage(kljucnaRec)); // Treca strana
+        accumulatedBugReport.addAll(verifyProductsOnPage(kljucnaRec)); // Third page
 
         // Print the accumulated bug report
         if (accumulatedBugReport.isEmpty()) {
@@ -53,7 +49,6 @@ public class VerifyProductPage extends BasePage {
             for (String issue : accumulatedBugReport) {
                 System.out.println(issue);
             }
-            // Trigger test failure if there are bugs
             Assert.fail("Test failed due to bugs found during verification across pages: " + String.join(", ", accumulatedBugReport));
         }
     }
