@@ -1,6 +1,5 @@
 package tests;
 
-import jdk.jfr.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.VerifyProductPage;
